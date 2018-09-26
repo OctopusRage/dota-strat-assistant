@@ -34,12 +34,14 @@ const mutations = {
     state.triggeredEvent = state.triggeredEvents.sort(function (a, b) {
       return a.notifyEvery - b.notifyEvery
     })
+    localStorage.setItem('localTriggeredEvents', JSON.stringify(state.triggeredEvents))
   },
   PERIODIC_EVENTS (state, event) {
     state.periodicEvents.push(event)
     state.periodicEvents = state.periodicEvents.sort(function (a, b) {
       return a.notifyEvery - b.notifyEvery
     })
+    localStorage.setItem('localPeriodicEvents', JSON.stringify(state.periodicEvents))
   }
 }
 
