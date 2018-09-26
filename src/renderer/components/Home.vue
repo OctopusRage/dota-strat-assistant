@@ -19,40 +19,42 @@
           </div>
           <div class="list-group col-md-6 ">
             <span class="mb-2">Periodic Events</span>
-            <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-              Bounty Rune    
-              <span class="badge badge-primary badge-pill">12:00</span>
+            <a v-for="event in periodicEvents"
+               :key="event.id"
+               class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              {{event.name}}
+              <span class="badge badge-primary badge-pill">{{event.notifyEveryText}}</span>
             </a>
             
           </div>
           <div class="list-group col-md-6">
             <span class="mb-2">Triggered Events</span>
-            <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-              Roshan Revive    
+            <a v-for="event in triggeredEvents"
+               :key="event.id"
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              {{event.name}}
               <span class="" style="">
-                <span class="badge badge-success badge-pill">ctrl+k</span>
-                <span class="badge badge-primary badge-pill">08:00</span>
+                <span class="badge badge-success badge-pill">ctrl+{{event.eventKey}}</span>
+                <span class="badge badge-primary badge-pill">{{event.notifyOnText}}</span>
               </span>
-              
             </a>
           </div>
         </div>
-        <h4 v-html="test"></h4>
       </div>
     </main>
   </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   export default {
     name: 'home',
     components: {},
     computed: {
-      test: {
-        get () {
-          return this.$store.state.Counter.main
-        }
-      }
+      ...mapState({
+        periodicEvents: state => state.Event.periodicEvents,
+        triggeredEvents: state => state.Event.triggeredEvents
+      })
     },
     methods: {
       open (link) {
@@ -71,7 +73,6 @@
       saveEventList () {}
     },
     mounted () {
-      console.log(this.$store.state.Counter)
     }
   }
 </script>
