@@ -31,13 +31,13 @@ const mutations = {
   },
   TRIGGERED_EVENTS (state, event) {
     state.triggeredEvents.push(event)
-    state.triggeredEvents.sort(function (a, b) {
+    state.triggeredEvent = state.triggeredEvents.sort(function (a, b) {
       return a.notifyEvery - b.notifyEvery
     })
   },
   PERIODIC_EVENTS (state, event) {
     state.periodicEvents.push(event)
-    state.periodicEvents.sort(function (a, b) {
+    state.periodicEvents = state.periodicEvents.sort(function (a, b) {
       return a.notifyEvery - b.notifyEvery
     })
   }
