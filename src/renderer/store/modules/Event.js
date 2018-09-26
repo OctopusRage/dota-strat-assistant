@@ -1,3 +1,4 @@
+import Helper from '@/utils/Helper'
 const state = {
   triggeredEvent: {
     id: '',
@@ -19,7 +20,15 @@ const state = {
     notifyEveryText: '',
     notificationText: ''
   },
-  periodicEvents: []
+  periodicEvents: [],
+  onGoingEvent: {
+    id: '',
+    type: '',
+    notifyAt: {},
+    notifyAtText: '',
+    notificationText: ''
+  },
+  onGoingEvents: []
 }
 
 const mutations = {
@@ -42,6 +51,8 @@ const mutations = {
       return a.notifyEvery - b.notifyEvery
     })
     localStorage.setItem('localPeriodicEvents', JSON.stringify(state.periodicEvents))
+  },
+  ONGOING_EVENTS (state, periodicEvents, triggeredEvents) {
   }
 }
 
