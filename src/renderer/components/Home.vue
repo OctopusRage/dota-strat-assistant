@@ -37,6 +37,7 @@
             </a>
           </div>
         </div>
+        <h4 v-html="test"></h4>
       </div>
     </main>
   </div>
@@ -46,6 +47,13 @@
   export default {
     name: 'home',
     components: {},
+    computed: {
+      test: {
+        get () {
+          return this.$store.state.Counter.main
+        }
+      }
+    },
     methods: {
       open (link) {
         this.$electron.shell.openExternal(link)
@@ -63,6 +71,7 @@
       saveEventList () {}
     },
     mounted () {
+      console.log(this.$store.state.Counter)
     }
   }
 </script>

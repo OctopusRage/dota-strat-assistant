@@ -53,7 +53,7 @@
             </div>
             
             <div class="form-group col-md-12">
-              <button type="submit" class="btn btn-primary">Add</button>
+              <button type="button" @click="add()" class="btn btn-primary">Add</button>
               <button type="button" @click="cancel()" class="btn btn-danger">Cancel</button>
             </div>
 
@@ -71,6 +71,10 @@
     methods: {
       open (link) {
         this.$electron.shell.openExternal(link)
+      },
+      add () {
+        this.$store.dispatch('someAsyncTask')
+        this.$router.push({name: 'landing-page'})
       },
       cancel () {
         this.$router.back()
