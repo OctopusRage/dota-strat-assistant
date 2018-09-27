@@ -59,7 +59,8 @@ const mutations = {
     })
   },
   REMOVE_EVENT (state) {
-    state.upComingEvents.pop()
+    state.upComingEvents.shift()
+    console.log('remove event triggered', state.upComingEvents[0])
   }
 }
 

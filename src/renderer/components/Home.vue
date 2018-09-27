@@ -47,7 +47,6 @@
 
 <script>
   import { mapState } from 'vuex'
-  import Helper from '@/utils/Helper'
   export default {
     name: 'home',
     components: {},
@@ -75,7 +74,6 @@
     },
     mounted () {
       console.log(this.periodicEvents)
-      Helper.pushNotification()
     }
   }
 </script>

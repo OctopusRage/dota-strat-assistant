@@ -11,7 +11,6 @@
             <a v-for="e in upComingEvents" :key="e.id" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               {{e.name}}
               <span class="" style="">
-                <span class="badge badge-success badge-pill">ctrl+k</span>
                 <span class="badge badge-primary badge-pill">{{e.notifyAtText}}</span>
               </span>
             </a>
@@ -26,6 +25,7 @@
 </template>
 
 <script>
+  import Helper from '@/utils/Helper'
   import { mapState } from 'vuex'
   export default {
     name: 'event-start',
@@ -47,6 +47,7 @@
     },
     methods: {
       add () {
+        this.checkNearestEvent(this.totalTime)
         this.seconds++
         this.totalTime++
         if (this.seconds >= 60) {
@@ -72,6 +73,13 @@
         keyMessage += event.key || String.fromCharCode(event.keyCode)
         self.eventKeyValue = keyMessage
         console.log(self.eventKeyValue)
+      },
+      checkNearestEvent (totalTime) {
+        let nearestEvent = this.upComingEvents[0]
+        if (totalTime === nearestEvent.notifyAt) {
+          Helper.pushNotification(nearestEvent.name)
+          this.$store.dispatch('removeLatestEvent')
+        }
       }
     },
     mounted () {
