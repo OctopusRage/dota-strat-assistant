@@ -47,6 +47,7 @@
 
 <script>
   import { mapState } from 'vuex'
+  import Helper from '@/utils/Helper'
   export default {
     name: 'home',
     components: {},
@@ -67,12 +68,14 @@
         this.$router.push({name: 'create-triggered'})
       },
       openEventStarted () {
+        this.$store.dispatch('startEvents')
         this.$router.push({name: 'event-started'})
       },
-      startEvent () {},
       saveEventList () {}
     },
     mounted () {
+      console.log(this.periodicEvents)
+      Helper.pushNotification()
     }
   }
 </script>

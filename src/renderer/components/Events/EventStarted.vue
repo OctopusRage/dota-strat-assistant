@@ -8,11 +8,11 @@
         <div class="row">
           <div class="list-group col-md-12 mb-3">
             <span class="mb-2">On Going Events</span>
-            <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-              Roshan Revive
+            <a v-for="e in upComingEvents" :key="e.id" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              {{e.name}}
               <span class="" style="">
                 <span class="badge badge-success badge-pill">ctrl+k</span>
-                <span class="badge badge-primary badge-pill">08:00</span>
+                <span class="badge badge-primary badge-pill">{{e.notifyAtText}}</span>
               </span>
             </a>
           </div>
@@ -26,8 +26,14 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   export default {
     name: 'event-start',
+    computed: {
+      ...mapState({
+        upComingEvents: state => state.Event.upComingEvents
+      })
+    },
     components: {},
     data: function () {
       return {
@@ -70,6 +76,7 @@
     },
     mounted () {
       this.timer()
+      console.log(this.upComingEvents)
     }
   }
 </script>

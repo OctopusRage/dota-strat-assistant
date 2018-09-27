@@ -1,4 +1,4 @@
-import Helper from '@/utils/Helper'
+import EventHelper from '@/utils/EventHelper'
 const state = {
   triggeredEvent: {
     id: '',
@@ -21,14 +21,14 @@ const state = {
     notificationText: ''
   },
   periodicEvents: [],
-  onGoingEvent: {
+  upComingEvent: {
     id: '',
     type: '',
     notifyAt: {},
     notifyAtText: '',
     notificationText: ''
   },
-  onGoingEvents: []
+  upComingEvents: []
 }
 
 const mutations = {
@@ -52,7 +52,14 @@ const mutations = {
     })
     localStorage.setItem('localPeriodicEvents', JSON.stringify(state.periodicEvents))
   },
-  ONGOING_EVENTS (state, periodicEvents, triggeredEvents) {
+  UPCOMING_EVENTS (state) {
+    state.upComingEvents = EventHelper.createPeriodicOnGoingEvents(state.periodicEvents)
+    state.upComingEvents = state.upComingEvents.sort((a, b) => {
+      return a.notifyAt - b.notifyAt
+    })
+  },
+  REMOVE_EVENT (state) {
+    state.upComingEvents.pop()
   }
 }
 
@@ -68,6 +75,12 @@ const actions = {
   },
   addPeriodicEvent ({ commit }, periodicEvent) {
     commit('PERIODIC_EVENTS', periodicEvent)
+  },
+  startEvents ({commit}) {
+    commit('UPCOMING_EVENTS')
+  },
+  removeLatestEvent ({commit}) {
+    commit('REMOVE_EVENT')
   }
 }
 
