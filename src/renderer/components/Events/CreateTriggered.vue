@@ -98,7 +98,7 @@
           eventKey: self.eventKeyValue,
           notifyBefore: Helper.minutesToSeconds(self.notifyBeforeMinutes) + self.notifyBeforeSeconds,
           notifyBeforeText: Helper.mixMinutesAndSecondsText(self.notifyBeforeMinutes, self.notifyBeforeSeconds),
-          notifyOn: Helper.minutesToSeconds(self.notifyOnMinutes) + self.notifyOnSeconds,
+          notifyOn: parseInt(Helper.minutesToSeconds(self.notifyOnMinutes) + self.notifyOnSeconds),
           notifyOnText: Helper.mixMinutesAndSecondsText(self.notifyOnMinutes, self.notifyOnSeconds),
           notificationText: self.notificationText
         })
