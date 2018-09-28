@@ -99,6 +99,15 @@ const mutations = {
     localStorage.setItem('localTriggeredEvents', null)
     state.triggeredEvents = []
     state.periodicEvents = []
+  },
+  REMOVE_UPCOMING_BY_IDS (state, ids) {
+    console.log(ids)
+    ids.forEach(id => {
+      let upcomingEventIndex = state.upComingEvents.findIndex(e => {
+        return String(e.id) === String(id)
+      })
+      state.upComingEvents.splice(upcomingEventIndex, 1)
+    })
   }
 }
 
@@ -135,6 +144,9 @@ const actions = {
   },
   resetAllEvents ({commit}) {
     commit('RESET_ALL_EVENTS')
+  },
+  removeUpcomingEvents ({commit}, ids) {
+    commit('REMOVE_UPCOMING_BY_IDS', ids)
   }
 }
 

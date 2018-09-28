@@ -32,7 +32,10 @@
     computed: {
       ...mapState({
         upComingEvents: state => state.Event.upComingEvents
-      })
+      }),
+      onGoingEvents () {
+        return this.$store.state.Event.upComingEvents.filter(e => e.notifyAt === this.latestExecutedTime)
+      }
     },
     components: {},
     data: function () {
@@ -42,7 +45,8 @@
         minutes: 0,
         hours: 0,
         t: '00:00:00',
-        events: []
+        events: [],
+        latestExecutedTime: 0
       }
     },
     methods: {
@@ -75,10 +79,19 @@
         console.log(self.eventKeyValue)
       },
       checkNearestEvent (totalTime) {
+        let self = this
         let nearestEvent = this.upComingEvents[0]
         if (totalTime === nearestEvent.notifyAt - 1) {
+          self.latestExecutedTime = totalTime + 1
           Helper.pushNotification(nearestEvent.name, nearestEvent.notificationText)
-          this.$store.dispatch('removeLatestEvent')
+          // debugger
+          let ids = []
+          self.onGoingEvents.forEach(e => { ids.push(e.id) })
+          // self.onGoingEvents.forEach(e => {
+          //   ids.push(e.id)
+          // })
+          console.log(ids)
+          this.$store.dispatch('removeUpcomingEvents', ids)
         }
       }
     },
