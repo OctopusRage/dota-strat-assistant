@@ -7,14 +7,16 @@ export default {
         let i = e.notifyEvery
         let notifyBefore = parseInt((e.notifyEvery * 20) / 100)
         while (i <= 3600) {
-          results.push({
-            id: Helper.generateUniqID(),
-            name: e.name + ' in ' + Helper.secondToMinutes(notifyBefore).text,
-            type: 'periodic',
-            notifyAt: i - notifyBefore,
-            notifyAtText: Helper.secondToMinutes(i - notifyBefore).text,
-            notificationText: e.name + ' in ' + Helper.secondToMinutes(i - notifyBefore).text
-          })
+          if (e.notifyEvery > 60) {
+            results.push({
+              id: Helper.generateUniqID(),
+              name: e.name + ' in ' + Helper.secondToMinutes(notifyBefore).text,
+              type: 'periodic',
+              notifyAt: i - notifyBefore,
+              notifyAtText: Helper.secondToMinutes(i - notifyBefore).text,
+              notificationText: e.name + ' in ' + Helper.secondToMinutes(i - notifyBefore).text
+            })
+          }
           results.push({
             id: Helper.generateUniqID(),
             name: e.name,
