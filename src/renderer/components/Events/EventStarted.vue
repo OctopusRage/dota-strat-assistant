@@ -76,8 +76,8 @@
       },
       checkNearestEvent (totalTime) {
         let nearestEvent = this.upComingEvents[0]
-        if (totalTime === nearestEvent.notifyAt) {
-          Helper.pushNotification(nearestEvent.name)
+        if (totalTime === nearestEvent.notifyAt - 1) {
+          Helper.pushNotification(nearestEvent.name, nearestEvent.notificationText)
           this.$store.dispatch('removeLatestEvent')
         }
       }

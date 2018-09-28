@@ -25,9 +25,9 @@ export default {
       text: text
     }
   },
-  pushNotification (message) {
+  pushNotification (title, message) {
     let notificationPromise = new Promise(resolve => {
-      let myNotification = new Notification('Title', {
+      let myNotification = new Notification(title, {
         body: message
       })
       myNotification.onclick = () => {
