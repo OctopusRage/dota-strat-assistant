@@ -84,12 +84,8 @@
         if (totalTime === nearestEvent.notifyAt - 1) {
           self.latestExecutedTime = totalTime + 1
           Helper.pushNotification(nearestEvent.name, nearestEvent.notificationText)
-          // debugger
           let ids = []
           self.onGoingEvents.forEach(e => { ids.push(e.id) })
-          // self.onGoingEvents.forEach(e => {
-          //   ids.push(e.id)
-          // })
           console.log(ids)
           this.$store.dispatch('removeUpcomingEvents', ids)
         }
