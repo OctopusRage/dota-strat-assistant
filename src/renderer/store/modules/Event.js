@@ -79,6 +79,13 @@ const mutations = {
         if (state.triggeredEvents.length < 1 && ls.length > 0) state.triggeredEvents = ls
       }
     }
+  },
+  DELETE_PERIODIC_EVENT (state, eventId) {
+    let periodicEventIndex = state.periodicEvents.indexOf(e => {
+      return e.id === eventId
+    })
+    state.periodicEvents.splice(periodicEventIndex, 1)
+    localStorage.setItem('localPeriodicEvents', JSON.stringify(state.periodicEvents))
   }
 }
 
@@ -106,6 +113,9 @@ const actions = {
   },
   syncLocalTriggeredEvents ({commit}) {
     commit('SYNC_LOCAL_TRIGGERED_EVENTS')
+  },
+  deletePeriodicEvent ({commit}, eventId) {
+    commit('DELETE_PERIODIC_EVENT', eventId)
   }
 }
 

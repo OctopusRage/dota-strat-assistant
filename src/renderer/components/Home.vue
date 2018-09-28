@@ -23,7 +23,10 @@
                :key="event.id"
                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               {{event.name}}
-              <span class="badge badge-primary badge-pill">{{event.notifyEveryText}}</span>
+              <span>
+                <span class="badge badge-primary badge-pill">{{event.notifyEveryText}}</span>
+                <a class="ic-delete" @click="deletePeriodicEvent(event.id)"><v-icon name="times" scale="1"/></a>
+              </span>
             </a>
             
           </div>
@@ -47,9 +50,12 @@
 
 <script>
   import { mapState } from 'vuex'
+  import Icon from 'vue-awesome/components/Icon'
   export default {
     name: 'home',
-    components: {},
+    components: {
+      'v-icon': Icon
+    },
     computed: {
       ...mapState({
         periodicEvents: state => state.Event.periodicEvents,
@@ -74,6 +80,10 @@
       loadLocalData () {
         this.$store.dispatch('syncLocalPeriodicEvents')
         this.$store.dispatch('syncLocalTriggeredEvents')
+      },
+      deletePeriodicEvent (eventId) {
+        console.log('asdsad')
+        this.$store.dispatch('deletePeriodicEvent', eventId)
       }
     },
     mounted () {
@@ -83,6 +93,8 @@
   }
 </script>
 
-<style>
-  
+<style scoped>
+  .ic-delete {
+    cursor: pointer;
+  }
 </style>
