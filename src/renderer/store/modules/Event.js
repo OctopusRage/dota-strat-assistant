@@ -95,7 +95,7 @@ const mutations = {
     localStorage.setItem('localTriggeredEvents', JSON.stringify(state.triggeredEvents))
   },
   RESET_ALL_EVENTS (state) {
-    localStorage.setItem('localTriggeredEvents', null)
+    localStorage.setItem('localPeriodicEvents', null)
     localStorage.setItem('localTriggeredEvents', null)
     state.triggeredEvents = []
     state.periodicEvents = []

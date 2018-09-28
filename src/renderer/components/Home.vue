@@ -16,7 +16,7 @@
           <div class="col-md-12 mb-3">
             <button type="button" @click="openEventStarted" class="btn btn-success">Start</button>
             <button type="button" class="btn btn-primary">Save</button>
-            <button type="button" class="btn btn-danger">Reset</button>
+            <button type="button" class="btn btn-danger" @click="resetAllEvents">Reset</button>
           </div>
           <div class="list-group col-md-6 ">
             <span class="mb-2">Periodic Events</span>
