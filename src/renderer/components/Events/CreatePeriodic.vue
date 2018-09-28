@@ -29,23 +29,23 @@
               </div>
             </div>
 
-            <div class="form-group col-md-12">
-              <label>Notify Before Event</label>
-              <div class="row">
-                <div class="input-group mb-3 col-md-6">
-                  <input type="number" class="form-control" placeholder="0" v-model="notifyBeforeMinutes"  >
-                  <div class="input-group-append">
-                    <span class="input-group-text" >minutes</span>
-                  </div>
-                </div>    
-                <div class="input-group mb-3 col-md-6">
-                  <input type="number" class="form-control" placeholder="0"  v-model="notifyBeforeSeconds" >
-                  <div class="input-group-append">
-                    <span class="input-group-text" >second</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <!--<div class="form-group col-md-12">-->
+              <!--<label>Notify Before Event</label>-->
+              <!--<div class="row">-->
+                <!--<div class="input-group mb-3 col-md-6">-->
+                  <!--<input type="number" class="form-control" placeholder="0" v-model="notifyBeforeMinutes"  >-->
+                  <!--<div class="input-group-append">-->
+                    <!--<span class="input-group-text" >minutes</span>-->
+                  <!--</div>-->
+                <!--</div>    -->
+                <!--<div class="input-group mb-3 col-md-6">-->
+                  <!--<input type="number" class="form-control" placeholder="0"  v-model="notifyBeforeSeconds" >-->
+                  <!--<div class="input-group-append">-->
+                    <!--<span class="input-group-text" >second</span>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
 
             <div class="form-group col-md-12">
               <label>Notification Text</label>
