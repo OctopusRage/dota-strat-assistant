@@ -70,10 +70,15 @@
         this.$store.dispatch('startEvents')
         this.$router.push({name: 'event-started'})
       },
-      saveEventList () {}
+      saveEventList () {},
+      loadLocalData () {
+        this.$store.dispatch('syncLocalPeriodicEvents')
+        this.$store.dispatch('syncLocalTriggeredEvents')
+      }
     },
     mounted () {
       console.log(this.periodicEvents)
+      this.loadLocalData()
     }
   }
 </script>

@@ -58,9 +58,27 @@ const mutations = {
       return a.notifyAt - b.notifyAt
     })
   },
-  REMOVE_EVENT (state) {
+  REMOVE_LATEST_EVENT (state) {
     state.upComingEvents.shift()
     console.log('remove event triggered', state.upComingEvents[0])
+  },
+  SYNC_LOCAL_PERIODIC_EVENTS (state) {
+    let ls = localStorage.getItem('localPeriodicEvents')
+    ls = JSON.parse(ls)
+    if (ls) {
+      if (Array.isArray(ls)) {
+        if (state.periodicEvents.length < 1 && ls.length > 0) state.periodicEvents = ls
+      }
+    }
+  },
+  SYNC_LOCAL_TRIGGERED_EVENTS (state) {
+    let ls = localStorage.getItem('localTriggeredEvents')
+    ls = JSON.parse(ls)
+    if (ls) {
+      if (Array.isArray(ls)) {
+        if (state.triggeredEvents.length < 1 && ls.length > 0) state.triggeredEvents = ls
+      }
+    }
   }
 }
 
@@ -81,7 +99,13 @@ const actions = {
     commit('UPCOMING_EVENTS')
   },
   removeLatestEvent ({commit}) {
-    commit('REMOVE_EVENT')
+    commit('REMOVE_LATEST_EVENT')
+  },
+  syncLocalPeriodicEvents ({commit}) {
+    commit('SYNC_LOCAL_PERIODIC_EVENTS')
+  },
+  syncLocalTriggeredEvents ({commit}) {
+    commit('SYNC_LOCAL_TRIGGERED_EVENTS')
   }
 }
 
