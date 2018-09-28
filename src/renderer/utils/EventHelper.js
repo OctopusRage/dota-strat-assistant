@@ -14,7 +14,7 @@ export default {
               type: 'periodic',
               notifyAt: i - notifyBefore,
               notifyAtText: Helper.secondToMinutes(i - notifyBefore).text,
-              notificationText: e.name + ' in ' + Helper.secondToMinutes(i - notifyBefore).text
+              notificationText: e.name + ' in ' + Helper.secondToMinutes(notifyBefore).text
             })
           }
           results.push({
