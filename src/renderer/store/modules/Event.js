@@ -60,7 +60,6 @@ const mutations = {
   },
   REMOVE_LATEST_EVENT (state) {
     state.upComingEvents.shift()
-    console.log('remove event triggered', state.upComingEvents[0])
   },
   SYNC_LOCAL_PERIODIC_EVENTS (state) {
     let ls = localStorage.getItem('localPeriodicEvents')
@@ -81,11 +80,25 @@ const mutations = {
     }
   },
   DELETE_PERIODIC_EVENT (state, eventId) {
-    let periodicEventIndex = state.periodicEvents.indexOf(e => {
-      return e.id === eventId
+    let periodicEventIndex = state.periodicEvents.findIndex(e => {
+      return String(e.id) === String(eventId)
     })
     state.periodicEvents.splice(periodicEventIndex, 1)
     localStorage.setItem('localPeriodicEvents', JSON.stringify(state.periodicEvents))
+  },
+  DELETE_TRIGGERED_EVENT (state, eventId) {
+    let triggeredEventIndex = state.triggeredEvents.findIndex(e => {
+      return e.id === eventId
+    })
+    console.log(triggeredEventIndex)
+    state.triggeredEvents.splice(triggeredEventIndex, 1)
+    localStorage.setItem('localTriggeredEvents', JSON.stringify(state.triggeredEvents))
+  },
+  RESET_ALL_EVENTS (state) {
+    localStorage.setItem('localTriggeredEvents', null)
+    localStorage.setItem('localTriggeredEvents', null)
+    state.triggeredEvents = []
+    state.periodicEvents = []
   }
 }
 
@@ -116,6 +129,12 @@ const actions = {
   },
   deletePeriodicEvent ({commit}, eventId) {
     commit('DELETE_PERIODIC_EVENT', eventId)
+  },
+  deleteTriggeredEvent ({commit}, eventId) {
+    commit('DELETE_TRIGGERED_EVENT', eventId)
+  },
+  resetAllEvents ({commit}) {
+    commit('RESET_ALL_EVENTS')
   }
 }
 
