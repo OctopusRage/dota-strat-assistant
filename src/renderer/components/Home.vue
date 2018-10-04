@@ -2,12 +2,16 @@
   <div id="wrapper">
     <main>
       <div class="main-container">
+        Dota 2 <span class="badge badge-success badge-pill">7.19c</span>
         <div class="menu-event row mb-3">
           <div class="col-md-12">
             <h2>BUILD YOUR STRATEGIES</h2>
             <div class="list-group ">
-              <a @click="openCreatePeriodic()" class="list-group-item list-group-item-action">Create Periodic Event</a>
-              <a @click="openCreateTriggered()" class="list-group-item list-group-item-action">Create Triggerred Event</a>
+              <a @click="openCreatePeriodic()" class="list-group-item list-group-item-action">+ Periodic Event</a>
+              <div class="list-group-item justify-content-between align-items-center">
+                <button type="button" class="btn btn-outline-warning">Bounty</button> <button type="button" class="btn btn-outline-primary">Runes</button> <button type="button" class="btn btn-outline-secondary">Roshan</button>
+              </div>
+              <a @click="openCreateTriggered()" class="list-group-item list-group-item-action">+ Triggerred Event</a>
             </div>
           </div>
         </div>
